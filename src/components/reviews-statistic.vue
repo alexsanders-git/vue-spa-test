@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import Rating from "@/components/rating.vue";
-import Button from "@/components/button.vue";
+import Button from "@/components/my-button.vue";
+
+const redirectClick = () => {
+  window.location.href = 'https://www.google.com';
+};
+
+const openModalClick = () => {
+  console.log('Open');
+};
 </script>
 
 <template>
@@ -15,8 +23,8 @@ import Button from "@/components/button.vue";
     </div>
 
     <div class="buttons">
-      <Button text="Переглянути"/>
-      <Button text="Написати"/>
+      <Button text="Переглянути" type="transparent" :onClick="redirectClick"/>
+      <Button text="Написати" type="gradient" :onClick="openModalClick"/>
     </div>
   </div>
 </template>
