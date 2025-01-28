@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 
-const rating = 4.4;
+interface IProps {
+  rating: number;
+  count: number;
+}
+
+const props = defineProps<IProps>();
+
+const rating = props.rating;
 const roundedRating = Math.round(rating * 2) / 2;
 
 const stars = computed(() => {
@@ -42,7 +49,7 @@ const stars = computed(() => {
         </span>
     </div>
 
-    <span class="count">233 відгуки</span>
+    <span class="count">{{ props.count }} відгуки</span>
   </div>
 </template>
 

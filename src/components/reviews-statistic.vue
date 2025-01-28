@@ -1,13 +1,38 @@
 <script setup lang="ts">
+import {ref, onMounted, computed} from "vue";
+import axios from "axios";
 import Rating from "@/components/rating.vue";
 import Button from "@/components/my-button.vue";
+import type {IReview} from "@/types.ts";
+
+const reviews = ref<IReview[]>([]);
+
+const averageRating = computed(() => {
+  if (reviews.value.length === 0) return null;
+
+  const totalRating = reviews.value.reduce((sum: number, review: IReview) => sum + review.rating, 0);
+
+  return totalRating / reviews.value.length;
+});
+
+const reviewsCount = computed(() => reviews.value.length);
+
+onMounted(async () => {
+  try {
+    const {data} = await axios.get<IReview[]>('https://6798a966be2191d708b06dbf.mockapi.io/reviews');
+
+    reviews.value = data;
+  } catch (e) {
+    console.error(e)
+  }
+});
 
 const redirectClick = () => {
   window.location.href = 'https://www.google.com';
 };
 
 const openModalClick = () => {
-  console.log('Open');
+  alert('Open');
 };
 </script>
 
@@ -19,7 +44,9 @@ const openModalClick = () => {
         <span>Відгуки наших клієнтів у Google</span>
       </div>
 
-      <Rating/>
+      <div v-if="averageRating === null" class="rating">Завантаження...</div>
+
+      <Rating :rating="averageRating" :count="reviewsCount" v-else/>
     </div>
 
     <div class="buttons">
