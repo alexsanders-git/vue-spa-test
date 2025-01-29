@@ -44,7 +44,7 @@ const openModalClick = () => {
         <span>Відгуки наших клієнтів у Google</span>
       </div>
 
-      <div v-if="averageRating === null" class="rating">Завантаження...</div>
+      <div v-if="averageRating === null" class="rating-loader"></div>
 
       <Rating :rating="averageRating" :count="reviewsCount" v-else/>
     </div>
@@ -93,6 +93,36 @@ const openModalClick = () => {
   display: flex;
   align-items: center;
   column-gap: 20px;
+}
+
+.rating-loader {
+  position: relative;
+  width: 328px;
+  height: 45px;
+  padding: 5px;
+  background-color: #eee;
+  border-right: 15px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 100%;
+    box-shadow: 0 0 80px 20px #fff;
+    animation: skeletonSlide 0.6s infinite ease-in-out;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 310px;
+    height: 30px;
+  }
+
+  @media only screen and (max-width: 425px) {
+    height: 50px;
+  }
 }
 
 .buttons {

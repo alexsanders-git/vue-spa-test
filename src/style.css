@@ -16,3 +16,12 @@ body {
         font-size: 18px;
     }
 }
+
+@keyframes skeletonSlide {
+    from {
+        left: -100px;
+    }
+    to {
+        left: calc(100% + 100px);
+    }
+}
