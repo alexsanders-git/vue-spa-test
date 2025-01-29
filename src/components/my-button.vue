@@ -19,6 +19,7 @@ const props = defineProps<IProps>();
   padding: 11px 20px;
   border-radius: 8px;
   border: 1px solid transparent;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;

@@ -66,6 +66,7 @@ const openModalClick = () => {
   display: flex;
   align-items: center;
   column-gap: 20px;
+  font-weight: 500;
 }
 
 .buttons {
