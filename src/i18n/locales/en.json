@@ -1,0 +1,8 @@
+{
+  "title": "Our customer reviews on Google",
+  "reviews": "No reviews | {n} review | {n} reviews",
+  "buttons": {
+    "view": "View",
+    "write": "Write"
+  }
+}

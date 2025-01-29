@@ -69,7 +69,7 @@ const stars = computed(() => {
         </span>
     </div>
 
-    <span class="count">{{ reviewsCount }} {{ $t('message.reviews') }}</span>
+    <span class="count">{{ $t("reviews", reviewsCount) }}</span>
   </div>
 </template>
 
