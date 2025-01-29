@@ -16,15 +16,15 @@ const openModalClick = () => {
     <div class="wrapper">
       <div class="title">
         <img src="/google.svg" alt="Google Logo" class="logo"/>
-        <span>Відгуки наших клієнтів у Google</span>
+        <span>{{ $t('message.title') }}</span>
       </div>
 
       <Rating/>
     </div>
 
     <div class="buttons">
-      <Button text="Переглянути" type="transparent" :onClick="redirectClick"/>
-      <Button text="Написати" type="gradient" :onClick="openModalClick"/>
+      <Button :text="$t('message.buttons.view')" type="transparent" :onClick="redirectClick"/>
+      <Button :text="$t('message.buttons.write')" type="gradient" :onClick="openModalClick"/>
     </div>
   </div>
 </template>
