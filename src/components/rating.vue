@@ -48,7 +48,7 @@ const stars = computed(() => {
   <div v-if="averageRating === 0" class="rating-loader"></div>
 
   <div class="rating" v-else>
-    <span class="score">{{ averageRating }}</span>
+    <span class="score">{{ averageRating.toFixed(1) }}</span>
 
     <div class="stars">
          <span class="star" v-for="(star, index) in stars" :key="index">

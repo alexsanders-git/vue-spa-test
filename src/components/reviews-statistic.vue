@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import Rating from "@/components/rating.vue";
 import Button from "@/components/my-button.vue";
+import {inject} from "vue";
+
+const {openModal} = inject('modalActions')
 
 const redirectClick = () => {
   window.location.href = 'https://www.google.com';
-};
-
-const openModalClick = () => {
-  alert('Open');
 };
 </script>
 
@@ -23,8 +22,8 @@ const openModalClick = () => {
     </div>
 
     <div class="buttons">
-      <Button :text="$t('buttons.view')" type="transparent" :onClick="redirectClick"/>
-      <Button :text="$t('buttons.write')" type="gradient" :onClick="openModalClick"/>
+      <Button :text="$t('buttons.view')" view="transparent" :onClick="redirectClick"/>
+      <Button :text="$t('buttons.write')" view="gradient" :onClick="openModal"/>
     </div>
   </div>
 </template>

@@ -1,15 +1,18 @@
 <script setup lang="ts">
 interface IProps {
   text: string;
-  type: 'transparent' | 'gradient';
-  onClick: () => void;
+  type?: 'button' | 'submit';
+  view: 'transparent' | 'gradient';
+  onClick?: () => void;
 }
 
 const props = defineProps<IProps>();
+
+const type = props.type ?? 'button';
 </script>
 
 <template>
-  <button :class="['button', props.type]" @click="props.onClick">
+  <button :class="['button', props.view]" :type="type" @click="props.onClick?.()">
     {{ props.text }}
   </button>
 </template>

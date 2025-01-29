@@ -3,6 +3,12 @@
   "reviews": "No reviews | {n} review | {n} reviews",
   "buttons": {
     "view": "View",
-    "write": "Write"
+    "write": "Write",
+    "send": "Send"
+  },
+  "form": {
+    "name": "Name",
+    "text": "Text",
+    "rating": "Rating"
   }
 }
