@@ -3,8 +3,11 @@ import pluralRules from "./rules/pluralization"
 import en from "./locales/en.json";
 import ua from "./locales/ua.json";
 
+export const defaultLocale = 'ua';
+const selectedLang = localStorage.getItem('lang');
+
 const i18n = createI18n({
-    locale: 'ua',
+    locale: selectedLang || defaultLocale,
     fallbackLocale: 'ua',
     legacy: false,
     messages: {en, ua},

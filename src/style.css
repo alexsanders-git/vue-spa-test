@@ -17,6 +17,24 @@ body {
     }
 }
 
+.page-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1490px;
+    margin: 0 auto;
+    padding: 0 40px;
+
+    @media only screen and (max-width: 576px) {
+        padding: 0 16px;
+    }
+}
+
 @keyframes skeletonSlide {
     from {
         left: -100px;
