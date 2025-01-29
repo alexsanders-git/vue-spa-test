@@ -1,22 +1,40 @@
 <script setup lang="ts">
-import {computed} from 'vue';
+import {ref, onMounted, computed} from 'vue';
+import axios from "axios";
+import type {IReview} from "@/types.ts";
 
-interface IProps {
-  rating: number;
-  count: number;
-}
+const reviews = ref<IReview[]>([]);
 
-const props = defineProps<IProps>();
+const reviewsCount = computed(() => reviews.value.length);
 
-const rating = props.rating;
-const roundedRating = Math.round(rating * 2) / 2;
+const averageRating = computed(() => {
+  if (reviews.value.length === 0) return 0;
+
+  const totalRating = reviews.value.reduce((sum: number, review: IReview) => sum + review.rating, 0);
+
+  return totalRating / reviews.value.length;
+});
+
+const roundedRating = computed(() => {
+  return Math.round(averageRating.value * 2) / 2;
+});
+
+onMounted(async () => {
+  try {
+    const {data} = await axios.get<IReview[]>('https://6798a966be2191d708b06dbf.mockapi.io/reviews');
+
+    reviews.value = data;
+  } catch (e) {
+    console.error(e)
+  }
+});
 
 const stars = computed(() => {
   const starIcons = [];
   for (let i = 1; i <= 5; i++) {
-    if (roundedRating >= i) {
+    if (roundedRating.value >= i) {
       starIcons.push('filled');
-    } else if (roundedRating >= i - 0.5) {
+    } else if (roundedRating.value >= i - 0.5) {
       starIcons.push('half');
     } else {
       starIcons.push('empty');
@@ -27,8 +45,10 @@ const stars = computed(() => {
 </script>
 
 <template>
-  <div class="rating">
-    <span class="score">{{ rating }}</span>
+  <div v-if="averageRating === 0" class="rating-loader"></div>
+
+  <div class="rating" v-else>
+    <span class="score">{{ averageRating }}</span>
 
     <div class="stars">
          <span class="star" v-for="(star, index) in stars" :key="index">
@@ -49,11 +69,41 @@ const stars = computed(() => {
         </span>
     </div>
 
-    <span class="count">{{ props.count }} відгуки</span>
+    <span class="count">{{ reviewsCount }} відгуки</span>
   </div>
 </template>
 
 <style scoped lang="scss">
+.rating-loader {
+  position: relative;
+  width: 328px;
+  height: 45px;
+  padding: 5px;
+  background-color: #eee;
+  border-right: 15px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 100%;
+    box-shadow: 0 0 80px 20px #fff;
+    animation: skeletonSlide 0.6s infinite ease-in-out;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 310px;
+    height: 30px;
+  }
+
+  @media only screen and (max-width: 425px) {
+    height: 50px;
+  }
+}
+
 .rating {
   display: flex;
   align-items: center;
