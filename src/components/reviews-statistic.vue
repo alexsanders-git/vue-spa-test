@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import {inject} from "vue";
 import Rating from "@/components/rating.vue";
 import Button from "@/components/my-button.vue";
-import {inject} from "vue";
+import type {IModalActions} from "@/types.ts";
 
-const {openModal} = inject('modalActions')
+const {openModal} = inject<IModalActions>('modalActions')!;
 
 const redirectClick = () => {
   window.location.href = 'https://www.google.com';

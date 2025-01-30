@@ -8,13 +8,13 @@ const {locale} = useI18n();
 const savedLang = localStorage.getItem('lang') || defaultLocale;
 const selectedLang = ref(savedLang);
 
-const switchLang = (e: Event) => {
-  const newLang = e.target.value;
+const switchLang = () => {
+  const newLang = selectedLang.value;
 
   locale.value = newLang;
 
   localStorage.setItem('lang', newLang);
-  document.querySelector('html').setAttribute('lang', newLang);
+  document.querySelector('html')?.setAttribute('lang', newLang);
 }
 </script>
 

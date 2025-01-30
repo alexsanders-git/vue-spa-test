@@ -2,9 +2,9 @@
 import {inject, ref} from "vue";
 import axios from "axios";
 import Button from "@/components/my-button.vue";
-import type {IReview} from "@/types.ts";
+import type {IModalActions, IReview} from "@/types.ts";
 
-const {closeModal} = inject('modalActions')
+const {closeModal} = inject<IModalActions>('modalActions')!;
 
 const loading = ref(false)
 

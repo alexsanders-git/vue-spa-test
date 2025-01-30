@@ -3,6 +3,7 @@ import {provide, ref} from "vue";
 import LangSwitcher from "@/components/lang-switcher.vue";
 import ReviewsStatistic from "@/components/reviews-statistic.vue";
 import ModalForm from "@/components/modal-form.vue";
+import type {IModalActions} from "@/types.ts";
 
 const showModal = ref(false)
 
@@ -14,7 +15,7 @@ const closeModal = () => {
   showModal.value = false
 }
 
-provide('modalActions', {
+provide<IModalActions>('modalActions', {
   openModal,
   closeModal
 });
