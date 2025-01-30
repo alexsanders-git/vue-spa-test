@@ -28,5 +28,4 @@ npm run build
 
 ### Live Demo 🚀
 
-You can watch a live demo of the project here:
-<a href="https://reviews-statistics.vercel.app/" target="_blank">Live Demo</a>
+You can watch a live demo of the project here: [Live Demo](https://reviews-statistics.vercel.app/)
